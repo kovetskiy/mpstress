@@ -19,7 +19,7 @@ var (
 	usage   = "mpstress " + version + `
 
 Usage:
-  mpstress [options] <command>...
+  mpstress [options] [--] <command>...
   mpstress [options] -w
   mpstress -h | --help
   mpstress --version
@@ -86,7 +86,7 @@ func main() {
 	} else {
 		err := runCommand(args["<command>"].([]string))
 		if err != nil {
-			log.Fatalf(err, "unable to run command")
+			log.Errorf(err, "unable to run command")
 		}
 	}
 

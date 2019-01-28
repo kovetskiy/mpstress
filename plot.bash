@@ -14,7 +14,7 @@ set term png size 1200, 500
 set yrange [0:100]
 "
 
-for host in $(find ./output/ -maxdepth 1 -type d -printf '%P\n'); do
+for host in $(find ./output/ -maxdepth 1 -type d -printf '%P\n' | sort -n); do
     gnuplot <<HEAD
 set title "$host"
 
@@ -33,7 +33,7 @@ summary="${common}
 set output \"output/summary_total.png\"
 
 plot \\"
-for host in $(find ./output/ -maxdepth 1 -type d -printf '%P\n'); do
+for host in $(find ./output/ -maxdepth 1 -type d -printf '%P\n' | sort -n); do
     summary="$summary
     \"output/$host/total\" using 1:2 title \"$host cpu\" with lines, \\"
 done
